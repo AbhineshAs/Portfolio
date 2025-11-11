@@ -26,7 +26,6 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
     min-height: 100vh;
-    /* Ensure body content sections that are not .container based are aligned (mostly handled by .container) */
     text-align: center; 
 }
 
@@ -57,7 +56,6 @@ nav a {
     cursor: pointer; 
 }
 
-
 /* --- Headings --- */
 h3 {
     text-align: center;
@@ -71,10 +69,13 @@ h3 {
 }
 
 h3::after {
+    content: '';
+    display: block;
     width: 80px; 
     height: 4px;
     background: var(--primary-color);
     margin: 15px auto 0;
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     border-radius: 2px;
 }
 
@@ -87,7 +88,7 @@ h3::after {
     box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.4); 
 }
 
-/* 🚀 HEADER & NAV BAR CENTERING */
+/* --- Header & Navigation --- */
 header {
     background: rgba(18, 18, 18, 0.95);
     backdrop-filter: blur(8px); 
@@ -102,9 +103,6 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Optional: If you wanted h1 and nav to be a single centered block, you would remove 'space-between' 
-       and use 'justify-content: center' on the flex container, but 'space-between' is typically preferred 
-       for desktop navs. We will ensure the content within the nav is centered. */
 }
 
 header h1 {
@@ -114,12 +112,12 @@ header h1 {
 }
 
 nav a {
-    margin: 0 20px; /* Reduced margin to center links better within nav */
+    margin: 0 20px;
     font-weight: 500;
     color: var(--light-text);
     padding: 5px 0;
     position: relative;
-    display: inline-block; /* Essential for centering and hover effect consistency */
+    display: inline-block;
 }
 
 nav a:hover {
@@ -127,12 +125,22 @@ nav a:hover {
 }
 
 nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
     height: 3px;
     background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
-/* END HEADER & NAV BAR CENTERING */
 
-/* --- Hero Section (Content is already center-aligned via text-align: center on hero-section and margin: auto on intro-description) --- */
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* --- Hero Section --- */
 .hero-section {
     min-height: 90vh;
     display: flex;
@@ -166,39 +174,54 @@ nav a::after {
     color: var(--light-text);
 }
 
-/* --- Animated Gradient Button (Orange) --- */
+/* --- Animated Gradient Button --- */
 .button-primary {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4); 
+    transition: all 0.3s ease;
+    border: none;
 }
 
 .button-primary:hover {
     box-shadow: 0 12px 30px rgba(255, 87, 34, 0.6);
+    transform: translateY(-2px);
 }
 
-/* 🚀 ABOUT SECTION CENTERING */
+/* --- About Section --- */
 .about-content {
     max-width: 900px;
-    margin: 0 auto; /* Ensures content block is centered */
+    margin: 0 auto; 
     border-left: 5px solid var(--primary-color);
     padding-left: 30px;
-    text-align: left; /* Keep text left-aligned inside the centered block */
+    text-align: left; 
     color: var(--light-text);
 }
 
-/* 🚀 SKILLS SECTION CENTERING */
+/* --- Skills Section --- */
 .skills-grid {
     display: flex;
-    justify-content: center; /* Center the skill columns */
+    justify-content: center; 
     gap: 30px;
 }
 
 .skill-category {
     background: var(--card-bg);
+    padding: 35px;
+    border-radius: 6px;
     border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
 }
 
 .skill-category:hover {
+    transform: translateY(-7px); 
     border-color: var(--primary-color);
     box-shadow: 0 10px 25px rgba(255, 87, 34, 0.3);
 }
@@ -206,50 +229,87 @@ nav a::after {
 .skill-category h4 {
     color: var(--primary-color);
     border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
 }
 
 .skill-category li {
     color: var(--text-color);
+    padding: 8px 0;
     border-bottom: 1px solid #333333;
+    position: relative;
+    padding-left: 20px;
 }
 
 .skill-category li::before {
     content: '⏵'; 
     color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 0.8em;
+    line-height: 1.6;
 }
 
-/* 🚀 PROJECTS SECTION CENTERING */
+.skill-category li:last-child {
+    border-bottom: none;
+}
+
+/* --- Projects Section --- */
 .projects-grid {
     display: grid;
-    /* Use grid with auto-fit, but center the grid itself in the container */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    /* The grid itself will occupy max-width, but if there are empty columns, 
-       text-align: center on the section should help center grid items if they are fewer than the maximum fit.
-       Since this is a full-width grid, the cards will stretch and fill. */
+    max-width: 1000px; /* Constrain grid slightly for better centered look */
+    margin: 0 auto;
 }
 
 .project-card {
     background: var(--card-bg);
+    padding: 30px;
+    border-radius: 6px;
     border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
+    transform: scale(1.03) translateY(-7px); 
     border-color: var(--primary-color); 
     box-shadow: 0 15px 40px rgba(255, 87, 34, 0.3); 
 }
 
-.project-card .tech-stack {
-    color: var(--primary-color); 
+.project-card h4 {
+    color: var(--text-color);
+    margin-top: 0;
+    font-size: 1.8em;
 }
 
-/* 🚀 CONTACT SECTION CENTERING */
+.project-card .tech-stack {
+    color: var(--primary-color); 
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    color: var(--light-text);
+    text-align: left;
+}
+
+/* --- Contact Section --- */
 #contact {
-    text-align: center; /* Already set, but reiterated for clarity */
+    text-align: center;
 }
 
 .contact-links {
-    justify-content: center; /* Ensures contact links are centered */
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -257,19 +317,27 @@ nav a::after {
 }
 
 .contact-item {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 5px;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+    font-weight: 700;
+    transition: all 0.3s ease;
 }
 
 .contact-item:hover {
     background-color: var(--primary-color);
     color: var(--card-bg); 
     border-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
-/* 🚀 FOOTER CENTERING */
+/* --- Footer --- */
 footer {
+    padding: 60px 0 20px;
     background-color: var(--header-bg);
+    color: var(--light-text);
     border-top: 3px solid var(--primary-color);
 }
 
@@ -281,51 +349,154 @@ footer {
     border-bottom: 1px solid #333333;
     flex-wrap: wrap;
     gap: 30px;
-    /* For centered layout, you might prefer this on larger screens, 
-       but for a more compact centered look, switch to flex-direction: column
-       or use justify-content: space-around/center and adjust basis. 
-       Keeping original structure but ensuring elements inside columns are aligned. */
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .footer-column {
     flex-basis: 30%;
     min-width: 200px;
-    /* text-align: center; -- Only enable this if you want all footer text centered */
+}
+
+.footer-column h4 {
+    color: #ffffff;
+    margin-top: 0;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    padding: 5px 0;
+}
+
+.footer-column a {
+    color: var(--light-text);
+    text-decoration: none;
 }
 
 .footer-column a:hover {
     color: var(--primary-color);
 }
 
-.footer-bottom {
-    text-align: center;
+.footer-bio {
+    color: #999999;
 }
 
-/* --- Responsive Adjustments (Includes Centering fixes for smaller screens) --- */
-@media (max-width: 768px) {
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    color: #777777;
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* 📱 MEDIA QUERIES FOR MOBILE RESPONSIVENESS */
+/* ========================================= */
+
+/* Tablet View (992px and down) */
+@media (max-width: 992px) {
+    .section-padding {
+        padding: 80px 0;
+    }
+
+    h3 {
+        font-size: 2.2em;
+    }
     
+    .hero-section .title {
+        font-size: 5em; /* Smaller hero text */
+    }
+
+    .hero-section .intro-description {
+        font-size: 1.1em;
+    }
+
+    /* Stack skill categories vertically instead of horizontally */
+    .skills-grid {
+        flex-direction: column;
+        gap: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .skill-category {
+        min-width: 90%;
+        text-align: left;
+    }
+}
+
+
+/* Mobile View (768px and down) */
+@media (max-width: 768px) {
+    /* Header Stacks Vertically and Centers */
     header .container {
         flex-direction: column;
-        justify-content: center; /* Center content vertically */
+        justify-content: center;
+    }
+
+    header h1 {
+        margin-bottom: 15px;
     }
 
     nav {
-        margin-top: 15px;
+        margin-top: 0;
         text-align: center;
         width: 100%; 
     }
     
     nav a {
-        margin: 0 8px;
+        margin: 0 5px; /* Tighter spacing for nav links */
         display: inline-block;
         padding: 5px 10px;
+        font-size: 0.9em;
+    }
+
+    /* Hero Text Smaller */
+    .hero-section .title {
+        font-size: 3.5em; 
     }
     
-    /* Ensure footer columns stack and center on mobile */
+    .hero-section .tagline {
+        font-size: 1.2em;
+        letter-spacing: 3px;
+    }
+
+    .hero-section .intro-description {
+        font-size: 1em;
+    }
+    
+    /* About Content Alignment */
+    .about-content {
+        padding-left: 15px;
+        border-left-width: 3px;
+        min-width: 90%;
+        max-width: 90%;
+        text-align: center; /* Center paragraph text for better flow on mobile */
+    }
+    
+    .about-content p {
+        text-align: center; /* Ensures the paragraph text itself is centered */
+    }
+
+    /* Projects Grid Adjustment */
+    .projects-grid {
+        grid-template-columns: 1fr; /* Force single column */
+    }
+    
+    /* Footer Stacks and Centers */
     .footer-content {
         flex-direction: column;
         text-align: center;
         align-items: center;
+        max-width: 90%;
     }
 
     .footer-column {
