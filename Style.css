@@ -1,0 +1,341 @@
+/* --- Global Styles & Variables (CENTERED ORANGE THEME) --- */
+:root {
+    /* CONSOLIDATED COLORS */
+    --primary-color: #FF5722; /* Vibrant Orange (Primary & Secondary Focus) */
+    --text-color: #e0e0e0; 
+    --light-text: #aaaaaa; 
+    --main-bg: #121212; 
+    --alt-bg: #1e1e1e; 
+    --card-bg: #242424; 
+    --border-color: #383838; 
+    --header-bg: #121212; 
+    
+    /* GRADIENTS (Using only Orange) */
+    --gradient-start: #FF5722;
+    --gradient-end: #E64A19;
+    
+    --font-family: 'Inter', sans-serif;
+    --max-width: 1200px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--main-bg);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    /* Ensure body content sections that are not .container based are aligned (mostly handled by .container) */
+    text-align: center; 
+}
+
+/* --- Utility Classes --- */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 25px; 
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer; 
+}
+
+a:hover {
+    color: #ff9800; 
+}
+
+/* Add pointer to all interactive elements for flow */
+.button-primary, 
+.project-card, 
+.skill-category, 
+.contact-item,
+nav a {
+    cursor: pointer; 
+}
+
+
+/* --- Headings --- */
+h3 {
+    text-align: center;
+    font-size: 2.8em;
+    margin-bottom: 50px;
+    color: var(--text-color);
+    position: relative;
+    font-weight: 800; 
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+h3::after {
+    width: 80px; 
+    height: 4px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.section-padding {
+    padding: 120px 0; 
+}
+
+.section-alt {
+    background: var(--alt-bg);
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.4); 
+}
+
+/* 🚀 HEADER & NAV BAR CENTERING */
+header {
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(8px); 
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Optional: If you wanted h1 and nav to be a single centered block, you would remove 'space-between' 
+       and use 'justify-content: center' on the flex container, but 'space-between' is typically preferred 
+       for desktop navs. We will ensure the content within the nav is centered. */
+}
+
+header h1 {
+    font-weight: 900;
+    color: var(--primary-color);
+    font-size: 1.8em;
+}
+
+nav a {
+    margin: 0 20px; /* Reduced margin to center links better within nav */
+    font-weight: 500;
+    color: var(--light-text);
+    padding: 5px 0;
+    position: relative;
+    display: inline-block; /* Essential for centering and hover effect consistency */
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+nav a::after {
+    height: 3px;
+    background: var(--primary-color);
+}
+/* END HEADER & NAV BAR CENTERING */
+
+/* --- Hero Section (Content is already center-aligned via text-align: center on hero-section and margin: auto on intro-description) --- */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at top, rgba(255, 87, 34, 0.05) 0%, var(--main-bg) 70%);
+}
+
+.hero-section .tagline {
+    font-size: 1.4em;
+    color: var(--primary-color);
+    letter-spacing: 4px;
+}
+
+.hero-section .title {
+    font-size: 6.5em; 
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(45deg, var(--primary-color), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 87, 34, 0.3); 
+}
+
+.hero-section .intro-description {
+    max-width: 800px;
+    margin: 0 auto 40px; 
+    font-size: 1.25em;
+    color: var(--light-text);
+}
+
+/* --- Animated Gradient Button (Orange) --- */
+.button-primary {
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4); 
+}
+
+.button-primary:hover {
+    box-shadow: 0 12px 30px rgba(255, 87, 34, 0.6);
+}
+
+/* 🚀 ABOUT SECTION CENTERING */
+.about-content {
+    max-width: 900px;
+    margin: 0 auto; /* Ensures content block is centered */
+    border-left: 5px solid var(--primary-color);
+    padding-left: 30px;
+    text-align: left; /* Keep text left-aligned inside the centered block */
+    color: var(--light-text);
+}
+
+/* 🚀 SKILLS SECTION CENTERING */
+.skills-grid {
+    display: flex;
+    justify-content: center; /* Center the skill columns */
+    gap: 30px;
+}
+
+.skill-category {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.skill-category:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(255, 87, 34, 0.3);
+}
+
+.skill-category h4 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.skill-category li {
+    color: var(--text-color);
+    border-bottom: 1px solid #333333;
+}
+
+.skill-category li::before {
+    content: '⏵'; 
+    color: var(--primary-color);
+}
+
+/* 🚀 PROJECTS SECTION CENTERING */
+.projects-grid {
+    display: grid;
+    /* Use grid with auto-fit, but center the grid itself in the container */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    /* The grid itself will occupy max-width, but if there are empty columns, 
+       text-align: center on the section should help center grid items if they are fewer than the maximum fit.
+       Since this is a full-width grid, the cards will stretch and fill. */
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.project-card:hover {
+    border-color: var(--primary-color); 
+    box-shadow: 0 15px 40px rgba(255, 87, 34, 0.3); 
+}
+
+.project-card .tech-stack {
+    color: var(--primary-color); 
+}
+
+/* 🚀 CONTACT SECTION CENTERING */
+#contact {
+    text-align: center; /* Already set, but reiterated for clarity */
+}
+
+.contact-links {
+    justify-content: center; /* Ensures contact links are centered */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.contact-item:hover {
+    background-color: var(--primary-color);
+    color: var(--card-bg); 
+    border-color: var(--primary-color);
+}
+
+/* 🚀 FOOTER CENTERING */
+footer {
+    background-color: var(--header-bg);
+    border-top: 3px solid var(--primary-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333333;
+    flex-wrap: wrap;
+    gap: 30px;
+    /* For centered layout, you might prefer this on larger screens, 
+       but for a more compact centered look, switch to flex-direction: column
+       or use justify-content: space-around/center and adjust basis. 
+       Keeping original structure but ensuring elements inside columns are aligned. */
+}
+
+.footer-column {
+    flex-basis: 30%;
+    min-width: 200px;
+    /* text-align: center; -- Only enable this if you want all footer text centered */
+}
+
+.footer-column a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+}
+
+/* --- Responsive Adjustments (Includes Centering fixes for smaller screens) --- */
+@media (max-width: 768px) {
+    
+    header .container {
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+    }
+
+    nav {
+        margin-top: 15px;
+        text-align: center;
+        width: 100%; 
+    }
+    
+    nav a {
+        margin: 0 8px;
+        display: inline-block;
+        padding: 5px 10px;
+    }
+    
+    /* Ensure footer columns stack and center on mobile */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-column {
+        flex-basis: 100%;
+        min-width: 90%;
+    }
+
+    .footer-column ul {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+}
